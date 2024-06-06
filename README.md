@@ -29,7 +29,19 @@
 </p>
 
 <p align="center">
-    <img src="https://parallax-demo.herokuapp.com/parallax1.png" alt="Parallax Image 1" width="600">
-    <img src="https://parallax-demo.herokuapp.com/parallax2.png" alt="Parallax Image 2" width="600">
-    <img src="https://parallax-demo.herokuapp.com/parallax3.png" alt="Parallax Image 3" width="600">
+    <img src="https://source.unsplash.com/random/800x600" alt="Parallax Image 1" width="600">
+    <img src="https://source.unsplash.com/random/801x601" alt="Parallax Image 2" width="600">
+    <img src="https://source.unsplash.com/random/802x602" alt="Parallax Image 3" width="600">
+</p>
+
+## Parallax Animation
+<p align="center">
+    <a href="https://codepen.io/your-work">
+        <img src="https://img.shields.io/badge/Check_Parallax_Animation-Click_Here-blue?logo=codepen" alt="Parallax Animation">
+    </a>
+</p>
+
+<p align="center">
+    <iframe height="600" style="width: 100%;" scrolling="no" title="Simple CSS Parallax Effect" src="https://codepen.io/WebDevsCafe/embed/oNVEpQq?default-tab=result&editable=true">
+    </iframe>
 </p>
