@@ -12,14 +12,6 @@
   </video>
 </div>
 
-## Features
-
-- Feature 1
-- Feature 2
-- Feature 3
-
-## Community
-
 ### Join Our Telegram Group
 
 [![Telegram Group](https://img.shields.io/badge/Telegram-Group-blue?style=for-the-badge&logo=telegram)](https://t.me/vpn_injectorid)
@@ -33,5 +25,4 @@
 To get started with this project, clone the repository and follow the installation instructions below.
 
 ```sh
-git clone https://github.com/yourusername/yourproject.git
-cd yourproject
+git clone https://github.com/smilans/yamete
