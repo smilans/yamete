@@ -33,10 +33,14 @@
     <img src="https://readme-typing-svg.herokuapp.com?color=%23FF5733&center=true&vCenter=true&lines=Subscribe+to+our+Channel!;Join+our+Community;Stay+Updated+with+Latest+News" />
 </p>
 
+## Snake Ladder Animation
+<p align="center">
+    <img src="https://readme-typing-svg.herokuapp.com?color=%239ACD32&center=true&vCenter=true&lines=Welcome+to+our+Project!;Have+fun+exploring+the+code" />
+</p>
+
 ## Project Shield
 <p align="left">
     <a href="https://github.com/smilans/yamete">
         <img src="https://img.shields.io/badge/Project-Open%20Source-red?logo=github" alt="Open Source Project">
     </a>
 </p>
-
