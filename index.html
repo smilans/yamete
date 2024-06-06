@@ -14,7 +14,7 @@
             margin: 0;
             padding: 0;
             overflow-x: hidden;
-            transition: padding-right 0.3s ease;
+            transition: padding-right 0.3s ease, padding-left 0.3s ease;
         }
 
         h1, p {
@@ -47,7 +47,6 @@
         .menu-btn {
             position: fixed;
             top: 10px;
-            right: 10px;
             display: flex;
             flex-direction: column;
             justify-content: space-around;
@@ -58,6 +57,14 @@
             cursor: pointer;
             z-index: 1001;
             transition: background 0.3s ease;
+        }
+
+        .menu-btn.left {
+            left: 10px;
+        }
+
+        .menu-btn.right {
+            right: 10px;
         }
 
         .menu-btn div {
@@ -82,16 +89,23 @@
         .menu {
             position: fixed;
             top: 0;
-            right: -250px;
-            width: 250px;
             height: 100%;
             padding: 20px;
             background: rgba(0, 0, 0, 0.9);
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            border-radius: 10px 0 0 10px;
             z-index: 1000;
-            transition: right 0.3s ease;
+            transition: transform 0.3s ease;
             overflow-y: auto;
+        }
+
+        .menu.left {
+            left: -250px;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .menu.right {
+            right: -250px;
+            border-radius: 10px 0 0 10px;
         }
 
         .menu a {
@@ -154,16 +168,24 @@
             }
         }
 
-        body.menu-open .info {
+        body.menu-open-left .info, body.menu-open-right .info {
             transform: translate(-50%, -30%);
         }
 
-        body.menu-open {
+        body.menu-open-left {
+            padding-left: 250px;
+        }
+
+        body.menu-open-right {
             padding-right: 250px;
         }
 
-        .menu-open .menu {
-            right: 0;
+        .menu-open-left .menu.left {
+            transform: translateX(250px);
+        }
+
+        .menu-open-right .menu.right {
+            transform: translateX(-250px);
         }
     </style>
 </head>
@@ -176,18 +198,29 @@
         </video>
     </div>
 
-    <button class="menu-btn" onclick="toggleMenu()">
+    <button class="menu-btn left" onclick="toggleMenu('left')">
         <div></div>
         <div></div>
         <div></div>
     </button>
 
-    <div class="menu" id="menu">
+    <button class="menu-btn right" onclick="toggleMenu('right')">
+        <div></div>
+        <div></div>
+        <div></div>
+    </button>
+
+    <div class="menu left" id="left-menu">
+        <a href="cekxl.html">Cek Kuota Xl</a>
         <a href="asci.html">JPG to ASCII</a>
         <a href="clash_converter.html">Clash Converter</a>
         <a href="pointing_ip.html">Pointing IP</a>
         <a href="scan_domain.html">Scan Domain</a>
-        <a href="cekxl.html">Cek Kuota Xl</a>
+    </div>
+
+    <div class="menu right" id="right-menu">
+        <a href="https://t.me/vpn_injectorid" target="_blank">Telegram Group</a>
+        <a href="https://t.me/smilans" target="_blank">Telegram Channel</a>
     </div>
 
     <div class="info">
@@ -198,24 +231,38 @@
         <p><strong>Pointing IP:</strong> Memudahkan Anda untuk mengarahkan IP dengan cepat dan efisien.</p>
         <p><strong>Scan Domain:</strong> Alat untuk memindai domain dan mendapatkan informasi penting.</p>
         <p><strong>Cek Kuota XL:</strong> Alat untuk memeriksa sisa kuota XL Anda dengan cepat dan mudah.</p>
-        <p>Bergabunglah dengan grup Telegram kami untuk diskusi dan dukungan lebih lanjut:<p><a href="https://t.me/vpn_injectorid" target="_blank">VPN INJECTOR ID</a></p>
+        <p>Bergabunglah dengan grup Telegram kami untuk diskusi dan dukungan lebih lanjut:<p> <a href="https://t.me/vpn_injectorid" target="_blank">VPN INJECTOR ID</a></p>
         <p><em>"Kerja keras adalah kunci keberhasilan. Jangan pernah menyerah, teruslah berusaha dan raih impianmu!"</em></p>
     </div>
 
     <script>
-        function toggleMenu() {
-            var menu = document.getElementById('menu');
-            var btn = document.querySelector('.menu-btn');
+        function toggleMenu(side) {
             var body = document.body;
-            
-            if (menu.style.right === '0px') {
-                menu.style.right = '-250px';
-                btn.classList.remove('open');
-                body.classList.remove('menu-open');
-            } else {
-                menu.style.right = '0';
-                btn.classList.add('open');
-                body.classList.add('menu-open');
+            var btnLeft = document.querySelector('.menu-btn.left');
+            var btnRight = document.querySelector('.menu-btn.right');
+            var menuLeft = document.getElementById('left-menu');
+            var menuRight = document.getElementById('right-menu');
+
+            if (side === 'left') {
+                if (body.classList.contains('menu-open-left')) {
+                    body.classList.remove('menu-open-left');
+                    btnLeft.classList.remove('open');
+                } else {
+                    body.classList.add('menu-open-left');
+                    btnLeft.classList.add('open');
+                    body.classList.remove('menu-open-right');
+                    btnRight.classList.remove('open');
+                }
+            } else if (side === 'right') {
+                if (body.classList.contains('menu-open-right')) {
+                    body.classList.remove('menu-open-right');
+                    btnRight.classList.remove('open');
+                } else {
+                    body.classList.add('menu-open-right');
+                    btnRight.classList.add('open');
+                    body.classList.remove('menu-open-left');
+                    btnLeft.classList.remove('open');
+                }
             }
         }
     </script>
