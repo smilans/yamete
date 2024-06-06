@@ -2,57 +2,6 @@
     <img src="https://readme-typing-svg.herokuapp.com?color=%2336BCF7&center=true&vCenter=true&lines=S+C+R+I+P+T+ㅤBYㅤ+SMILANS" />
 </p>
 
-## Typing Animation with Typed.js
-<p align="center">
-    <span id="typed"></span>
-</p>
-<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-<script>
-  var typed = new Typed('#typed', {
-    strings: ["Script BY SMILANS", "Welcome to our site!"],
-    typeSpeed: 50,
-    backSpeed: 50,
-    loop: true
-  });
-</script>
-
-## Typing Animation with TypeIt
-<p align="center">
-    <span id="typeit"></span>
-</p>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script>
-<script>
-  new TypeIt('#typeit', {
-    strings: ["Script BY SMILANS", "Welcome to our site!"],
-    speed: 50,
-    breakLines: false,
-    loop: true
-  }).go();
-</script>
-
-## Typing Animation with CSS
-<p align="center">
-    <span class="typing-demo">Script BY SMILANS</span>
-</p>
-<style>
-  .typing-demo {
-    width: 22ch;
-    animation: typing 2s steps(22), blink .5s step-end infinite alternate;
-    white-space: nowrap;
-    overflow: hidden;
-    border-right: 3px solid;
-  }
-
-  @keyframes typing {
-    from { width: 0 }
-  }
-
-  @keyframes blink {
-    50% { border-color: transparent }
-  }
-</style>
-
 ## Hosting
 <p align="left">
     <a href="https://smilans.github.io/yamete/">
@@ -91,9 +40,3 @@
     </a>
 </p>
 
-## Fork Me on GitHub Ribbon
-<p align="left">
-    <a href="https://github.com/smilans/yamete">
-        <img src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png" alt="Fork me on GitHub">
-    </a>
-</p>
