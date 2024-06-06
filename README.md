@@ -1,7 +1,7 @@
 
 ## Hosting
 
-dihosting di [Qwords](https://smilans.github.io/yamete/).
+dihosting di [GITHUB](https://smilans.github.io/yamete/).
 
 ## Grup Telegram
 
