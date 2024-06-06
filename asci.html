@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Image Converter Art</title>
+    <link rel="stylesheet" href="styles.css?v=3">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        h1, p {
+            text-align: center;
+            margin: 20px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .parallax {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .parallax video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1;
+            transform: translate(-50%, -50%);
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+        }
+
+        .menu-btn {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 30px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 1001;
+            transition: background 0.3s ease;
+        }
+
+        .menu-btn div {
+            width: 100%;
+            height: 3px;
+            background: #fff;
+            transition: all 0.3s ease;
+        }
+
+        .menu-btn.open div:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .menu-btn.open div:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-btn.open div:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        .menu {
+            display: none;
+            position: fixed;
+            top: 50px;
+            right: 10px;
+            flex-direction: column;
+            width: 200px;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            z-index: 1000;
+        }
+
+        .menu a {
+            display: block;
+            margin: 5px 0;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .menu a:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 600px;
+            width: 90%;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            animation: slideIn 1s ease-out;
+            z-index: 1000;
+        }
+
+        .transparent-bg p {
+            background: rgba(255, 255, 255, 0.5);
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        input[type="file"], input[type="number"], input[type="range"], select, input[type="checkbox"], input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            background: rgba(255, 255, 255, 0.7);
+            border: none;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        #output {
+            white-space: pre-wrap;
+            background: #000;
+            color: #fff;
+            padding: 10px;
+            margin-top: 20px;
+            border-radius: 5px;
+            height: 300px;
+            overflow-y: auto;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #007bff;
+            border-radius: 10px;
+            border: 3px solid rgba(0, 0, 0, 0.1);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: #0056b3;
+        }
+
+        /* Responsive design for table */
+        @media (max-width: 768px) {
+            .container {
+                max-width: 95%;
+                padding: 10px;
+            }
+        }
+
+        /* Prevent body scroll when menu is open */
+        body.menu-open {
+            overflow: hidden;
+        }
+
+        /* Add transition for smooth scrolling */
+        .menu-scroll {
+            transition: transform 0.3s ease;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button class="menu-btn" onclick="toggleMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
+    </button>
+
+    <div class="menu" id="menu">
+        <a href="index.html">Home</a>
+        <a href="https://t.me/vpn_injectorid" target="_blank">Telegram Group</a>
+    </div>
+
+    <div class="parallax">
+        <video autoplay muted loop>
+            <source src="video1.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <div class="container menu-scroll">
+        <h1>Image Braille ASCII Art</h1>
+
+        <div class="transparent-bg">
+            <p>
+                <label for="filepicker">Image</label>
+                <input type="file" id="filepicker" accept=".png,.jpeg,.jpg">
+            </p>
+
+            <p>
+                <label for="dither">Dither Mode</label>
+                <select id="dither">
+                    <option value="floydSteinberg">Floyd-Steinberg (simple)</option>
+                    <option value="stucki">Stucki (edge contrast)</option>
+                    <option value="atkinson">Atkinson (high contrast)</option>
+                    <option value="threshold">Threshold (no dither)</option>
+                </select>
+            </p>
+
+            <p>
+                <label for="threshold">Threshold</label>
+                <input type="range" id="threshold" min="0" max="254" value="127">
+            </p>
+
+            <p>
+                <label for="width">Width</label>
+                <input type="number" id="width" value="100" step="10"> characters (>500 gets laggy)
+            </p>
+
+            <p>
+                <label for="invert">Invert</label>
+                <input type="checkbox" id="invert">
+            </p>
+
+            <p>
+                <label for="font-size">Preview font size</label>
+                <input type="number" id="font-size" value="10">
+            </p>
+
+            <p>
+                <button id="copy">Copy</button>
+                
+</button>
+                (<span id="char-count">0</span> characters)
+            </p>
+
+            <p>
+                <label for="filename">File Name</label>
+                <input type="text" id="filename" placeholder="Enter file name">
+            </p>
+
+            <p>
+                <button id="download">Download</button>
+            </p>
+        </div>
+
+        <div id="output" contenteditable="true"></div>
+    </div>
+
+    <script src="dist/index.js?v=3" type="module"></script>
+    <script>
+        document.getElementById('copy').addEventListener('click', () => {
+            const output = document.getElementById('output');
+            const range = document.createRange();
+            range.selectNodeContents(output);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            document.execCommand('copy');
+            alert('ASCII art copied to clipboard!');
+        });
+
+        document.getElementById('download').addEventListener('click', () => {
+            const output = document.getElementById('output').innerText;
+            const filename = document.getElementById('filename').value || 'ascii_art';
+            const blob = new Blob([output], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${filename}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        });
+
+        function toggleMenu() {
+            var menu = document.getElementById('menu');
+            var btn = document.querySelector('.menu-btn');
+            var body = document.body;
+            var container = document.querySelector('.container');
+            
+            if (menu.style.display === 'flex') {
+                menu.style.display = 'none';
+                btn.classList.remove('open');
+                body.classList.remove('menu-open');
+                container.style.transform = 'translate(-50%, -50%)';
+            } else {
+                menu.style.display = 'flex';
+                btn.classList.add('open');
+                body.classList.add('menu-open');
+                container.style.transform = 'translate(-50%, -20%)';
+            }
+        }
+    </script>
+
+</body>
+
+</html>
