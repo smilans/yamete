@@ -10,7 +10,7 @@
 </p>
 
 <video width="600" controls>
-    <source src="https://smilans.github.io/yamete/video.mp4" type="video/mp4">
+    <source src="https://github.com/smilans/yamete/blob/main/video1.mp4" type="video/mp4">
     Your browser does not support the video tag.
 </video>
 
