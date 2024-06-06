@@ -3,7 +3,16 @@
 </p>
 
 ## Hosting
-Dihosting di [GITHUB](https://smilans.github.io/yamete/).
+<p align="center">
+    <a href="https://smilans.github.io/yamete/">
+        <img src="https://img.shields.io/badge/Hosted_on-GitHub-brightgreen?logo=github" alt="GitHub Hosting">
+    </a>
+</p>
+
+<video width="600" controls>
+    <source src="https://smilans.github.io/yamete/video.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
 
 ## Grup Telegram
 <p align="center">
