@@ -4,109 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cek Kuota</title>
-    <style>
-        body, html {
-            height: 100%;
-            margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            overflow-x: hidden;
-        }
-
-        .parallax {
-            position: relative;
-            height: 100%;
-            overflow: hidden;
-        }
-
-        .parallax video {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            z-index: -1;
-            transform: translate(-50%, -50%);
-            background: no-repeat;
-            background-size: cover;
-        }
-
-        .form-container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            width: 90%;
-            max-width: 300px;
-        }
-
-        .form-container input {
-            padding: 10px;
-            margin: 10px 0;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        .form-container button {
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-
-        .form-container button:hover {
-            background-color: #45a049;
-        }
-
-        #result {
-            margin-top: 20px;
-            text-align: left;
-            font-size: 14px;
-            word-wrap: break-word;
-            max-height: 50vh;
-            overflow-y: auto;
-        }
-
-        .copy-button {
-            margin-top: 10px;
-            padding: 10px 20px;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-
-        .copy-button:hover {
-            background-color: #0056b3;
-        }
-
-        .separator {
-            margin: 10px 0;
-            border-top: 1px solid #000;
-        }
-
-        @media (min-width: 768px) {
-            .form-container {
-                width: 500px;
-            }
-
-            #result {
-                font-size: 16px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="dist/css/styles-page3.css">
 </head>
 <body>
 
 <div class="parallax">
     <video autoplay muted loop>
-        <source src="video1.mp4" type="video/mp4">
+        <source src="image/video/video1.mp4" type="video/mp4">
         Your browser does not support HTML5 video.
     </video>
 </div>
@@ -119,78 +23,7 @@
     <button id="copyButton" class="copy-button" style="display: none;" onclick="copyResult()">Salin Hasil</button>
 </div>
 
-<script>
-    async function cekKuota() {
-        const msisdn = document.getElementById("msisdn").value;
-        const url = `https://apigw.kmsp-store.com/sidompul/v1/cek_kuota?msisdn=${msisdn}&isJSON=true`;
-        const headers = {
-            'Authorization': 'Basic c2lkb21wdWxhcGk6YXBpZ3drbXNw',
-            'X-API-Key': '6fb99971-2a2f-40ed-815d-a64df9f3c975',
-            'X-App-Version': '1.0.0',
-            'Content-Type': 'application/x-www-form-urlencoded'
-        };
-
-        try {
-            const response = await fetch(url, {
-                method: 'GET',
-                headers: headers
-            });
-
-            const result = await response.json();
-            displayResult(result);
-            document.getElementById('copyButton').style.display = 'block';
-        } catch (error) {
-            document.getElementById("result").innerText = 'Error: ' + error.message;
-        }
-    }
-
-    function displayResult(data) {
-        const resultDiv = document.getElementById("result");
-        resultDiv.innerHTML = '';
-
-        function createElement(value) {
-            const p = document.createElement('p');
-            p.innerHTML = value;
-            return p;
-        }
-
-        if (data.message) {
-            resultDiv.appendChild(createElement(`pesan: ${data.message}`));
-            resultDiv.appendChild(document.createElement('div')).classList.add('separator');
-        }
-
-        if (data.data && data.data.hasil) {
-            const hasilContent = data.data.hasil.replace(/\\u([0-9A-F]{4})/gi, function (match, grp) {
-                return String.fromCharCode(parseInt(grp, 16));
-            }).replace(/<br>/gi, '<br/>').split('<br/><br/>');
-
-            hasilContent.forEach((section, index) => {
-                if (index > 0) {
-                    resultDiv.appendChild(document.createElement('div')).classList.add('separator');
-                }
-                section.split('<br/>').forEach(line => {
-                    resultDiv.appendChild(createElement(line));
-                });
-            });
-        }
-    }
-
-    function copyResult() {
-        const resultDiv = document.getElementById("result");
-        const resultText = Array.from(resultDiv.childNodes).map(node => {
-            if (node.classList && node.classList.contains('separator')) {
-                return '──────────────────';
-            }
-            return node.innerText || '';
-        }).join('\n');
-
-        navigator.clipboard.writeText(resultText).then(function() {
-            alert('Hasil berhasil disalin!');
-        }, function(err) {
-            alert('Gagal menyalin hasil: ', err);
-        });
-    }
-</script>
+<script src="dist/js/script.js"></script>
 
 </body>
 </html>
