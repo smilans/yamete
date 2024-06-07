@@ -6,205 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Image Converter Art</title>
-    <link rel="stylesheet" href="styles.css?v=3">
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f0f0f0;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-            transition: padding-right 0.3s ease, padding-left 0.3s ease;
-        }
-
-        h1, p {
-            text-align: center;
-            margin: 20px;
-            animation: fadeIn 2s ease-in-out;
-        }
-
-        .parallax {
-            position: relative;
-            height: 100vh;
-            overflow: hidden;
-        }
-
-        .parallax video {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            z-index: -1;
-            transform: translate(-50%, -50%);
-            background-size: cover;
-            background-attachment: fixed;
-            background-position: center;
-        }
-
-        .menu-btn {
-            position: fixed;
-            top: 10px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
-            width: 30px;
-            height: 30px;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            z-index: 1001;
-            transition: background 0.3s ease;
-        }
-
-        .menu-btn.left {
-            left: 10px;
-        }
-
-        .menu-btn.right {
-            right: 10px;
-        }
-
-        .menu-btn div {
-            width: 100%;
-            height: 3px;
-            background: #fff;
-            transition: all 0.3s ease;
-        }
-
-        .menu-btn.open div:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        .menu-btn.open div:nth-child(2) {
-            opacity: 0;
-        }
-
-        .menu-btn.open div:nth-child(3) {
-            transform: rotate(-45deg) translate(5px, -5px);
-        }
-
-        .menu {
-            position: fixed;
-            top: 0;
-            height: 100%;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.9);
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            z-index: 1000;
-            transition: transform 0.3s ease;
-            overflow-y: auto;
-        }
-
-        .menu.left {
-            left: -250px;
-            border-radius: 0 10px 10px 0;
-        }
-
-        .menu.right {
-            right: -250px;
-            border-radius: 10px 0 0 10px;
-        }
-
-        .menu a {
-            display: block;
-            margin: 10px 0;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.1);
-            color: #fff;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background 0.3s ease, color 0.3s ease;
-        }
-
-        .menu a:hover {
-            background: rgba(255, 255, 255, 0.3);
-            color: #000;
-        }
-
-        .info {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            color: #fff;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 40px;
-            border-radius: 10px;
-            width: 80%;
-            max-width: 800px;
-            transition: transform 0.3s ease;
-        }
-
-        .info h1 {
-            font-size: 2.5em;
-            margin-bottom: 20px;
-        }
-
-        .info p {
-            font-size: 1.1em;
-            line-height: 1.6;
-        }
-
-        .info a {
-            color: #00aaff;
-            text-decoration: none;
-        }
-
-        .info a:hover {
-            text-decoration: underline;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        body.menu-open-left .info, body.menu-open-right .info {
-            transform: translate(-50%, -30%);
-        }
-
-        body.menu-open-left {
-            padding-left: 250px;
-        }
-
-        body.menu-open-right {
-            padding-right: 250px;
-        }
-
-        .menu-open-left .menu.left {
-            transform: translateX(250px);
-        }
-
-        .menu-open-right .menu.right {
-            transform: translateX(-250px);
-        }
-    </style>
+    <link rel="icon" href="favicon.ico">
+    <link rel="stylesheet" href="dist/styles-page1.css?v=3">
 </head>
 
 <body>
 
     <div class="parallax">
         <video autoplay muted loop>
-            <source src="video1.mp4" type="video/mp4">
+            <source src="image/video/video1.mp4" type="video/mp4">
         </video>
     </div>
 
-    <button class="menu-btn left" onclick="toggleMenu('left')">
+    <button class="menu-btn left" id="left-button">
         <div></div>
         <div></div>
         <div></div>
     </button>
 
-    <button class="menu-btn right" onclick="toggleMenu('right')">
+    <button class="menu-btn right" id="right-button">
         <div></div>
         <div></div>
         <div></div>
@@ -223,7 +43,7 @@
         <a href="https://t.me/smilans" target="_blank">Telegram Channel</a>
     </div>
 
-    <div class="info">
+    <div class="info" id="info-content">
         <h1>Selamat Datang</h1>
         <p>Di sini, Anda dapat menemukan berbagai alat konversi gambar dan utilitas lainnya:</p>
         <p><strong>JPG to ASCII:</strong> Mengubah gambar JPG menjadi seni ASCII yang menakjubkan.</p>
@@ -235,38 +55,7 @@
         <p><em>"Kerja keras adalah kunci keberhasilan. Jangan pernah menyerah, teruslah berusaha dan raih impianmu!"</em></p>
     </div>
 
-    <script>
-        function toggleMenu(side) {
-            var body = document.body;
-            var btnLeft = document.querySelector('.menu-btn.left');
-            var btnRight = document.querySelector('.menu-btn.right');
-            var menuLeft = document.getElementById('left-menu');
-            var menuRight = document.getElementById('right-menu');
-
-            if (side === 'left') {
-                if (body.classList.contains('menu-open-left')) {
-                    body.classList.remove('menu-open-left');
-                    btnLeft.classList.remove('open');
-                } else {
-                    body.classList.add('menu-open-left');
-                    btnLeft.classList.add('open');
-                    body.classList.remove('menu-open-right');
-                    btnRight.classList.remove('open');
-                }
-            } else if (side === 'right') {
-                if (body.classList.contains('menu-open-right')) {
-                    body.classList.remove('menu-open-right');
-                    btnRight.classList.remove('open');
-                } else {
-                    body.classList.add('menu-open-right');
-                    btnRight.classList.add('open');
-                    body.classList.remove('menu-open-left');
-                    btnLeft.classList.remove('open');
-                }
-            }
-        }
-    </script>
-
+    <script src="dist/script.js?v=3"></script>
 </body>
 
 </html>
