@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,58 +10,9 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="dist/map.css">
 </head>
-
 <body>
-
-    <div class="parallax">
-        <video autoplay muted loop>
-            <source src="video1.mp4" type="video/mp4">
-        </video>
-    </div>
-
-    <button class="menu-btn left" id="left-button">
-        <div></div>
-        <div></div>
-        <div></div>
-    </button>
-
-    <button class="menu-btn right" id="right-button">
-        <div></div>
-        <div></div>
-        <div></div>
-    </button>
-
-    <div class="menu left" id="left-menu">
-        <a href="cekxl.html">Cek Kuota Xl</a>
-        <a href="clash_converter.html">Clash Converter</a>
-        <a href="pointing_ip.html">Pointing IP</a>
-        <a href="scan_domain.html">Scan Domain</a>
-        <a href="asci.html">JPG to ASCII</a>
-    </div>
-
-    <div class="menu right" id="right-menu">
-        <a href="https://t.me/vpn_injectorid" target="_blank">Telegram Group</a>
-        <a href="https://t.me/smilans" target="_blank">Telegram Channel</a>
-    </div>
-
-    <div class="info" id="info-content">
-        <h1>Selamat Datang</h1>
-        <p>Bergabunglah dengan grup Telegram kami untuk diskusi dan dukungan lebih lanjut<p>
-        <p> <a href="https://t.me/vpn_injectorid" target="_blank">VPN INJECTOR ID</a></p>
-        <p><em>"Kerja keras adalah kunci keberhasilan. Jangan pernah menyerah, teruslah berusaha dan raih impianmu!"</em></p>
-        <div id="ip-info">
-            <h2>Informasi IP dan Lokasi</h2>
-            <p><strong>IP Address:</strong> <span id="ip"></span></p>
-            <p><strong>Kota:</strong> <span id="city"></span></p>
-            <p><strong>Region:</strong> <span id="region"></span></p>
-            <p><strong>Negara:</strong> <span id="country"></span></p>
-            <div id="map"></div>
-        </div>
-    </div>
-
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <script src="dist/script.js?v=3"></script>
-    <script src="dist/map.js"></script>
+    <script>
+        document.write(atob("PGRpdiBjbGFzcz0icGFyYWxsYXgiPgogICAgICAgIDx2aWRlbyBhdXRvcGxheSBtdXRlZCBsb29wPgogICAgICAgICAgICA8c291cmNlIHNyYz0idmlkZW8xLm1wNCIgdHlwZT0idmlkZW8vbXA0Ij4KICAgICAgICA8L3ZpZGVvPgogICAgPC9kaXY+CgogICAgPGJ1dHRvbiBjbGFzcz0ibWVudS1idG4gbGVmdCIgaWQ9ImxlZnQtYnV0dG9uIj4KICAgICAgICA8ZGl2PjwvZGl2PgogICAgICAgIDxkaXY+PC9kaXY+CiAgICAgICAgPGRpdj48L2Rpdj4KICAgIDwvYnV0dG9uPgoKICAgIDxidXR0b24gY2xhc3M9Im1lbnUtYnRuIHJpZ2h0IiBpZD0icmlnaHQtYnV0dG9uIj4KICAgICAgICA8ZGl2PjwvZGl2PgogICAgICAgIDxkaXY+PC9kaXY+CiAgICAgICAgPGRpdj48L2Rpdj4KICAgIDwvYnV0dG9uPgoKICAgIDxkaXYgY2xhc3M9Im1lbnUgbGVmdCIgaWQ9ImxlZnQtbWVudSI+CiAgICAgICAgPGEgaHJlZj0iY2VreGwuaHRtbCI+Q2VrIEt1b3RhIFhsPC9hPgogICAgICAgIDxhIGhyZWY9ImNsYXNoX2NvbnZlcnRlci5odG1sIj5DbGFzaCBDb252ZXJ0ZXI8L2E+CiAgICAgICAgPGEgaHJlZj0icG9pbnRpbmdfaXAuaHRtbCI+UG9pbnRpbmcgSVA8L2E+CiAgICAgICAgPGEgaHJlZj0ic2Nhbl9kb21haW4uaHRtbCI+U2NhbiBEb21haW48L2E+CiAgICAgICAgPGEgaHJlZj0iYXNjaS5odG1sIj5KUEcgdG8gQVNDSUk8L2E+CiAgICA8L2Rpdj4KCiAgICA8ZGl2IGNsYXNzPSJtZW51IHJpZ2h0IiBpZD0icmlnaHQtbWVudSI+CiAgICAgICAgPGEgaHJlZj0iaHR0cHM6Ly90Lm1lL3Zwbl9pbmplY3RvcmlkIiB0YXJnZXQ9Il9ibGFuayI+VGVsZWdyYW0gR3JvdXA8L2E+CiAgICAgICAgPGEgaHJlZj0iaHR0cHM6Ly90Lm1lL3NtaWxhbnMiIHRhcmdldD0iX2JsYW5rIj5UZWxlZ3JhbSBDaGFubmVsPC9hPgogICAgPC9kaXY+CgogICAgPGRpdiBjbGFzcz0iaW5mbyIgaWQ9ImluZm8tY29udGVudCI+CiAgICAgICAgPGgxPlNlbGFtYXQgRGF0YW5nPC9oMT4KICAgICAgICA8cD5CZXJnYWJ1bmdsYWggZGVuZ2FuIGdydXAgVGVsZWdyYW0ga2FtaSB1bnR1ayBkaXNrdXNpIGRhbiBkdWt1bmdhbiBsZWJpaCBsYW5qdXQ8cD4KICAgICAgICA8cD4gPGEgaHJlZj0iaHR0cHM6Ly90Lm1lL3Zwbl9pbmplY3RvcmlkIiB0YXJnZXQ9Il9ibGFuayI+VlBOIElOSkVDVE9SIElEPC9hPjwvcD4KICAgICAgICA8cD48ZW0+IktlcmphIGtlcmFzIGFkYWxhaCBrdW5jaSBrZWJlcmhhc2lsYW4uIEphbmdhbiBwZXJuYWggbWVueWVyYWgsIHRlcnVzbGFoIGJlcnVzYWhhIGRhbiByYWloIGltcGlhbm11ISI8L2VtPjwvcD4KICAgICAgICA8ZGl2IGlkPSJpcC1pbmZvIj4KICAgICAgICAgICAgPGgyPkluZm9ybWFzaSBJUCBkYW4gTG9rYXNpPC9oMj4KICAgICAgICAgICAgPHA+PHN0cm9uZz5JUCBBZGRyZXNzOjwvc3Ryb25nPiA8c3BhbiBpZD0iaXAiPjwvc3Bhbj48L3A+CiAgICAgICAgICAgIDxwPjxzdHJvbmc+S290YTo8L3N0cm9uZz4gPHNwYW4gaWQ9ImNpdHkiPjwvc3Bhbj48L3A+CiAgICAgICAgICAgIDxwPjxzdHJvbmc+UmVnaW9uOjwvc3Ryb25nPiA8c3BhbiBpZD0icmVnaW9uIj48L3NwYW4+PC9wPgogICAgICAgICAgICA8cD48c3Ryb25nPk5lZ2FyYTo8L3N0cm9uZz4gPHNwYW4gaWQ9ImNvdW50cnkiPjwvc3Bhbj48L3A+CiAgICAgICAgICAgIDxkaXYgaWQ9Im1hcCI+PC9kaXY+CiAgICAgICAgPC9kaXY+CiAgICA8L2Rpdj4KCiAgICA8c2NyaXB0IHNyYz0iaHR0cHM6Ly91bnBrZy5jb20vbGVhZmxldC9kaXN0L2xlYWZsZXQuanMiPjwvc2NyaXB0PgogICAgPHNjcmlwdCBzcmM9ImRpc3Qvc2NyaXB0LmpzP3Y9MyI+PC9zY3JpcHQ+CiAgICA8c2NyaXB0IHNyYz0iZGlzdC9tYXAuanMiPjwvc2NyaXB0Pgo="));
+    </script>
 </body>
-
 </html>
